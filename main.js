@@ -12,7 +12,7 @@ document.getElementById("add-task-button").addEventListener('click', function ()
 
     span.classList.add('task');
     span.innerHTML = `${boxValue}`;
-    console.log(boxValue);
+    //console.log(boxValue);
 
     button.classList.add('delete-btn');
     button.innerHTML = "x";
@@ -27,6 +27,14 @@ document.getElementById("add-task-button").addEventListener('click', function ()
     ul.appendChild(li);
 
     document.getElementById("input-task").value = '';
+
+    input.addEventListener('change', e => {
+        if (e.target.checked) {
+            span.classList.add("task-done");
+        } else {
+            span.classList.remove("task-done");
+        }
+    });
 });
 
 //DELETE TASK
@@ -37,10 +45,20 @@ for (let i = 0; i < btn.length; i++) {
     }, false);
 }
 
-/*let ul = document.getElementById("task-list");
-    ul.insertAdjacentHTML('beforeend',
-        '        <li>' +
-        '            <input type="checkbox">' +
-        '            <span class="task">Set do A/B</span>' +
-        '            <button class="delete-btn">x</button>' +
-        '        </li>');*/
+//LINE-THROUGH OR NOT
+let checkbox = document.querySelectorAll("input[type=checkbox]");
+
+for (let i = 0; i < checkbox.length; i++) {
+    checkbox[i].addEventListener('change', function (e) {
+        let k = checkbox[i].nextElementSibling;
+        if(e.target.checked){
+            k.classList.add("task-done");
+        }else{
+            if (k.classList.contains('task-done')){
+                k.classList.remove("task-done");
+            }
+        }
+    }, false);
+}
+
+
