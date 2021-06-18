@@ -1,6 +1,6 @@
 # To-Do List
 
-A to-do list website to manage my/your tasks. To create a task, type it in the input box and click "ADD TASK". When completed, mark the task checkbox to strike it through. Finally, to delete, press the x button. 
+A to-do list page to manage tasks. To create a task, type it in the input box and click "ADD TASK". When completed, mark the task checkbox to strike it through. Finally, to delete, press the x button. 
 
 ## Demonstration
 
