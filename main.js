@@ -9,17 +9,36 @@ let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 console.log(taskList)
 
 //DISPLAY TASKS
+function addTask(p1, p2) {
+    return p1 * p2;   // The function returns the product of p1 and p2
+}
+
 
 for (let i = 0; i < taskList.length; i++) {
     let text1 = taskList[i].taskText;
-    let span1 = '<span class="task">' + text1 +'</span>';
     let ul = document.getElementById("task-list");
+    let span1 = '<span class="task">' + text1 +'</span>';
+
+
+
     ul.insertAdjacentHTML('beforeend',
         '        <li>' +
         '            <input type="checkbox">' +
         span1 +
         '            <button class="delete-btn">x</button>' +
         '        </li>');
+
+    let btn = document.getElementsByClassName('delete-btn');
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].addEventListener('click', function (e) {
+            e.currentTarget.parentNode.remove();
+            taskList.pop();
+            localStorage.setItem("tasks", JSON.stringify(taskList));
+            console.log(taskList);
+
+        }, false);
+
+    }
 
 }
 
@@ -54,7 +73,7 @@ document.getElementById("add-task-button").addEventListener('click', function ()
 
                 taskList.splice(i, 1);
                 localStorage.setItem("tasks", JSON.stringify(taskList));
-                console.log(taskList)
+                console.log(taskList);
 
 
             }
