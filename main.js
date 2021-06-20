@@ -2,23 +2,26 @@
 //console.log(ul);
 //localStorage.setItem('myCat', 'Tom');
 //localStorage.clear();
-let task1 = {
-    marcado: false,
-    texto: 'Buy milk',
-};
 
-let task2 = {
-    marcado: true,
-    texto: 'Get a cow',
-};
 
 let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 
-let array = localStorage.getItem('taskList');
-let cow = JSON.parse(array);
-console.log("Hola");
-console.log(cow);
+console.log(taskList)
 
+//DISPLAY TASKS
+
+for (let i = 0; i < taskList.length; i++) {
+    let text1 = taskList[i].taskText;
+    let span1 = '<span class="task">' + text1 +'</span>';
+    let ul = document.getElementById("task-list");
+    ul.insertAdjacentHTML('beforeend',
+        '        <li>' +
+        '            <input type="checkbox">' +
+        span1 +
+        '            <button class="delete-btn">x</button>' +
+        '        </li>');
+
+}
 
 
 
@@ -36,12 +39,29 @@ document.getElementById("add-task-button").addEventListener('click', function ()
 
     span.classList.add('task');
     span.innerHTML = `${boxValue}`;
+    let conte = `${boxValue}`;
     //console.log(boxValue);
+
 
     button.classList.add('delete-btn');
     button.innerHTML = "x";
     button.onclick = function () {
         //alert("Button is clicked");
+        //DELETE TASK
+        for (let i = 0; i < taskList.length; i++) {
+
+            if(taskList[i].taskText === conte){
+
+                taskList.splice(i, 1);
+                localStorage.setItem("tasks", JSON.stringify(taskList));
+                console.log(taskList)
+
+
+            }
+        }
+
+
+        //END OF DELETE TASK
         button.parentElement.remove();
     };
 
@@ -52,17 +72,24 @@ document.getElementById("add-task-button").addEventListener('click', function ()
 
     document.getElementById("input-task").value = '';
 
-    //Add task
-    let task3 = {
-        marcado: false,
-        texto: `${boxValue}`
+    //ADD TASK
+    let task = {
+        completed: false,
+        taskText: `${boxValue}`
     };
-    taskList.push(task1);
+    taskList.push(task);
+    localStorage.setItem("tasks", JSON.stringify(taskList));
+    //END OF ADD TASK
+
+
+
     localStorage.setItem('taskList', JSON.stringify(taskList));
     let array = localStorage.getItem('taskList');
     let cow = JSON.parse(array);
     console.log("mutable");
     console.log(cow);
+
+
 
     input.addEventListener('change', e => {
         if (e.target.checked) {
@@ -78,8 +105,7 @@ let btn = document.getElementsByClassName('delete-btn');
 for (let i = 0; i < btn.length; i++) {
     btn[i].addEventListener('click', function (e) {
         e.currentTarget.parentNode.remove();
-        const cat = localStorage.getItem('my');
-        console.log(cat);
+
 
     }, false);
 }
