@@ -3,17 +3,20 @@ html, body, input {
     font-size: 22px;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
+    /*background-color: #f8f8f8;*/
+    background-color: #2b272e;
 
 }
 
 .to-do {
-    position: fixed;
+    /*position: fixed;
     margin: auto auto auto;
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);*/
+    position: relative;
 
+    margin-left: 5%;
     max-width: 100%;
     width: 30rem;
 }
@@ -28,6 +31,7 @@ html, body, input {
 
 span {
     padding-left: 1.5rem;
+    color: #C8B8DC;
 
 }
 
