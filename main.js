@@ -14,7 +14,7 @@ function deleteTask(i) {
     console.log("AQUI");
     btn[i].addEventListener('click', function (e) {
         e.currentTarget.parentNode.remove();
-        //taskList.pop();
+
         taskList.splice(i, 1);
         localStorage.setItem("tasks", JSON.stringify(taskList));
         console.log(taskList);
